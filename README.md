@@ -1,2 +1,2 @@
 # go-geocoder
-Define the location and return the geographic coordinates
+Client for geographic location. Define the location and return the geographic coordinates or reverse.
