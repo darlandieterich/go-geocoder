@@ -1,9 +1,10 @@
-package main
+package geocoder
 
 import (
-	"log"
+	"fmt"
 )
 
-func main() {
-	log.Println("hello")
+//New - declaration
+func New() {
+	fmt.Println("oe")
 }

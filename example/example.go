@@ -1,7 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	api "../api"
+)
 
 func main() {
-	fmt.Println("...")
+
+	fmt.Println(api.Request())
 }
