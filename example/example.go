@@ -7,6 +7,9 @@ import (
 )
 
 func main() {
-
-	fmt.Println(api.Request())
+	res := api.RequestObject()
+	fmt.Println(res[0]["licence"])
+	//for _, item := range res {
+	//fmt.Println(item)
+	//}
 }
