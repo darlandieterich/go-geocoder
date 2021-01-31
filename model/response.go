@@ -20,10 +20,15 @@ package model
 "icon": "https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png",
 "geojson": {} */
 
-// GeocoderResponse - Struct for response
+//GeocoderResponse - Stack Struct for response
 type GeocoderResponse struct {
+	Response []GeocoderResponseObject `json:"[]"`
+}
+
+// GeocoderResponseObject - Struct for response
+type GeocoderResponseObject struct {
 	OsmType string `json:"osm_type"`
-	OsmId   string `json:"osm_id"`
+	OsmID   string `json:"osm_id"`
 }
 
 /* bool, for JSON booleans
