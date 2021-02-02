@@ -17,8 +17,9 @@ func main() {
 		},
 	}
 
-	test := geocoder.Config{}
-	ret := test.Search(req)
+	geo := geocoder.New()
+	geo.MaxResult = 5
+	ret := geo.Search(req)
 	fmt.Println(ret)
 
 }

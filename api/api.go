@@ -18,6 +18,7 @@ const urlAPI string = `https://nominatim.openstreetmap.org/search.php?polygon_ge
 //RequestString - Function to return response in string
 func RequestString(r model.GeocoderRequest) string {
 	newURL := FormatParameters(r)
+	fmt.Println(newURL)
 	res, _ := http.Get(newURL)
 	body, _ := ioutil.ReadAll(res.Body)
 	return string(body)

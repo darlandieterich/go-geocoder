@@ -1,24 +1,28 @@
 package geocoder
 
 import (
-	"fmt"
-
 	"./api"
 	"./model"
 )
 
 type Config struct {
-	cnf model.GeocoderConfig
+	model.GeocoderConfig
 }
 
 //New - declaration
-func New(n model.GeocoderAddress) {
-	fmt.Println("oe")
+func New() Config {
+	return Config{
+		model.GeocoderConfig{
+			Language:  "en",
+			MaxResult: 0,
+		},
+	}
 }
 
 //Search - Search to get the coordenates
 func (c Config) Search(r model.GeocoderRequest) string {
-	r.Config = c.cnf
+	r.Config.Language = c.Language
+	r.Config.MaxResult = c.MaxResult
 	return api.RequestString(r)
 }
 
