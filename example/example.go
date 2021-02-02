@@ -3,17 +3,22 @@ package main
 import (
 	"fmt"
 
-	api "../api"
+	geocoder ".."
 	model "../model"
 )
 
 func main() {
-	//res := api.RequestObject()
-	//fmt.Println(res[0]["licence"])
-	req := model.GeocoderRequest{}
-	req.City = "Berlin"
-	req.MaxResult = 5
-	ret := api.FormatParameters(req)
+	req := model.GeocoderRequest{
+		Address: model.GeocoderAddress{
+			City: "Berlin",
+		},
+		Config: model.GeocoderConfig{
+			MaxResult: 2,
+		},
+	}
+
+	test := geocoder.Config{}
+	ret := test.Search(req)
 	fmt.Println(ret)
 
 }
