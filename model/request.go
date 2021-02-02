@@ -9,5 +9,5 @@ type GeocoderRequest struct {
 	State      string `json:"state"`
 	Country    string `json:"country"`
 	PostalCode string `json:"postalCode"`
-	MaxResult  int    `json:"maxResult"`
+	MaxResult  uint   `json:"maxResult"`
 }
