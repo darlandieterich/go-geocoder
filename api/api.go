@@ -41,13 +41,9 @@ func FormatParameters(r model.GeocoderRequest) string {
 	params["state"] = r.State
 	params["country"] = r.Country
 	params["postalcode"] = r.PostalCode
-	params["maxresult"] = func() string {
-		if r.MaxResult == 0 {
-			return ""
-		} else {
-			return strconv.Itoa(r.MaxResult)
-		}
-	}()
+	if r.MaxResult > 0 {
+		params["maxresult"] = strconv.Itoa(int(r.MaxResult))
+	}
 
 	strParams := fmt.Sprintf("%s", urlAPI)
 
