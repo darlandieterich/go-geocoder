@@ -13,12 +13,11 @@ func main() {
 			City: "Berlin",
 		},
 		Config: model.GeocoderConfig{
-			MaxResult: 2,
+			MaxResult: 0,
 		},
 	}
 
 	geo := geocoder.New()
-	geo.MaxResult = 5
 	ret := geo.Search(req)
 	fmt.Println(ret)
 
