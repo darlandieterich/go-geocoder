@@ -19,7 +19,7 @@ func main() {
 	}
 
 	geo := geocoder.New()
-	geo.Timeout = 5
+	geo.Timeout = 2
 	ret := geo.Search(req)
 	fmt.Println(ret)
 
