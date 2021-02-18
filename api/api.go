@@ -5,6 +5,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 	"io/ioutil"
 	"net/http"
 	"strconv"
@@ -19,7 +20,14 @@ const urlAPI string = `https://nominatim.openstreetmap.org/search.php?polygon_ge
 func RequestString(r model.GeocoderRequest) string {
 	newURL := FormatParameters(r)
 	fmt.Println(newURL)
-	res, _ := http.Get(newURL)
+	client := http.Client{
+		Timeout:   time.Duration(r.Config.Timeout) * time.Second,
+	}
+	res, err := client.Get(newURL)
+	if err != nil {
+		fmt.Println(err)
+		return ""
+	}
 	body, _ := ioutil.ReadAll(res.Body)
 	return string(body)
 }

@@ -14,7 +14,8 @@ func New() Config {
 	return Config{
 		model.GeocoderConfig{
 			Language:  "en",
-			MaxResult: 0,
+			MaxResult: 1,
+			Timeout: 3,
 		},
 	}
 }
@@ -23,6 +24,7 @@ func New() Config {
 func (c Config) Search(r model.GeocoderRequest) string {
 	r.Config.Language = c.Language
 	r.Config.MaxResult = c.MaxResult
+	r.Config.Timeout = c.Timeout
 	return api.RequestString(r)
 }
 

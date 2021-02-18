@@ -20,4 +20,5 @@ type GeocoderAddress struct {
 type GeocoderConfig struct {
 	Language  string
 	MaxResult uint
+	Timeout   uint //seconds
 }
