@@ -1,13 +1,7 @@
 package model
 
-//GeocoderRequest - Main struct of request
+//GeocoderRequest - Struct for request
 type GeocoderRequest struct {
-	Address GeocoderAddress
-	Config  GeocoderConfig
-}
-
-//GeocoderAddress - Struct for request
-type GeocoderAddress struct {
 	Street     string
 	City       string
 	County     string
