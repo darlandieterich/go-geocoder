@@ -37,3 +37,20 @@ string, for JSON strings
 []interface{}, for JSON arrays
 map[string]interface{}, for JSON objects
 nil for JSON null */
+
+
+/* place_id	:	257739312
+licence	:	Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright
+osm_type	:	relation
+osm_id	:	242418
+	boundingbox		[4]
+lat	:	-28.2898542
+lon	:	-53.501822
+display_name	:	Panambi, Região Geográfica Imediata de Ijuí, Região Geográfica Intermediária de Ijui, Rio Grande do Sul, South Region, Brazil
+place_rank	:	16
+category	:	boundary
+type	:	administrative
+importance	:	0.577499072791235
+icon	:	https://nominatim.openstreetmap.org/ui/mapicons//poi_boundary_administrative.p.20.png
+	geojson		{2} */
+
