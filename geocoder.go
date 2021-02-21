@@ -25,5 +25,5 @@ func (c *Config) Search(r model.GeocoderRequest) *api.ApiObject {
 }
 
 //ReverseSearch - Reverse Search
-func ReverseSearch() {
+func (c *Config) ReverseSearch() {
 }
