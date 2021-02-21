@@ -5,30 +5,25 @@ import (
 	"./model"
 )
 
-type Config struct {
-	model.GeocoderConfig
-}
+type Config model.GeocoderConfig
 
-//New - declaration
+//New - declaration of default values
 func New() Config {
 	return Config{
-		model.GeocoderConfig{
-			Language:  "en",
-			MaxResult: 1,
-			Timeout: 3,
-		},
+		Language:  "en",
+		MaxResult: 1,
+		Timeout: 5,
 	}
 }
 
 //Search - Search to get the coordenates
-func (c Config) Search(r model.GeocoderRequest) string {
-	r.Config.Language = c.Language
-	r.Config.MaxResult = c.MaxResult
-	r.Config.Timeout = c.Timeout
-	return api.RequestString(r)
+func (c *Config) Search(r model.GeocoderRequest) *api.ApiObject {
+	castObject := (*model.GeocoderConfig)(c)
+	req := api.ApiObject{}
+	req.Config = *castObject
+	return req.Request(r)
 }
 
 //ReverseSearch - Reverse Search
-func (c Config) ReverseSearch() {
-
+func ReverseSearch() {
 }
