@@ -15,7 +15,8 @@ import (
 )
 
 type ApiObject struct {
-	Value interface{}
+	internal interface{}
+	Result []map[string]interface{}
 	Config model.GeocoderConfig
 	Error error
 }
@@ -36,7 +37,7 @@ func (o *ApiObject) Request(r model.GeocoderRequest) *ApiObject {
 		return o
 	}
 	body, _ := ioutil.ReadAll(res.Body)
-	o.Value = string(body)
+	o.internal = string(body)
 	return o
 }
 
@@ -44,8 +45,8 @@ func (o *ApiObject) Request(r model.GeocoderRequest) *ApiObject {
 func (o *ApiObject) ToObject() *ApiObject {
 	if o.Error == nil {
 		var results []map[string]interface{}
-		json.Unmarshal([]byte(o.Value.(string)), &results)
-		o.Value = results
+		json.Unmarshal([]byte(o.internal.(string)), &results)
+		o.Result = results
 	}
 	return o
 }
