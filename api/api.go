@@ -14,45 +14,55 @@ import (
 	model "../model"
 )
 
+type ApiObject struct {
+	Value interface{}
+	Config model.GeocoderConfig
+	Error error
+}
+
 const urlAPI string = `https://nominatim.openstreetmap.org/search.php?polygon_geojson=1&format=jsonv2`
 
-//RequestString - Function to return response in string
-func RequestString(r model.GeocoderRequest) string {
-	newURL := FormatParameters(r)
-	fmt.Println(newURL)
+//Request - Function to return response in string
+func (o *ApiObject) Request(r model.GeocoderRequest) *ApiObject {
+	newURL := o.FormatParameters(r)
+	fmt.Println(o.Config.Timeout, newURL)
 	client := http.Client{
-		Timeout:   time.Duration(r.Config.Timeout) * time.Second,
+		Timeout: time.Duration(o.Config.Timeout) * time.Second,
 	}
 	res, err := client.Get(newURL)
 	if err != nil {
-		fmt.Println(err)
-		return ""
+		//fmt.Println(err)
+		o.Error = err
+		return o
 	}
 	body, _ := ioutil.ReadAll(res.Body)
-	return string(body)
+	o.Value = string(body)
+	return o
 }
 
 //RequestObject - Function to return object in time execution
-func RequestObject(r model.GeocoderRequest) []map[string]interface{} {
-	res := RequestString(r)
-	var results []map[string]interface{}
-	json.Unmarshal([]byte(res), &results)
-	return results
+func (o *ApiObject) ToObject() *ApiObject {
+	if o.Error == nil {
+		var results []map[string]interface{}
+		json.Unmarshal([]byte(o.Value.(string)), &results)
+		o.Value = results
+	}
+	return o
 }
 
 //FormatParameters - Process string parameter
-func FormatParameters(r model.GeocoderRequest) string {
+func (o *ApiObject) FormatParameters(r model.GeocoderRequest) string {
 	params := make(map[string]string)
 
-	params["street"] = r.Address.Street
-	params["city"] = r.Address.City
-	params["county"] = r.Address.County
-	params["state"] = r.Address.State
-	params["country"] = r.Address.Country
-	params["postalcode"] = r.Address.PostalCode
-	params["accept-language"] = r.Config.Language
-	if r.Config.MaxResult > 0 {
-		params["maxresult"] = strconv.Itoa(int(r.Config.MaxResult))
+	params["street"] = r.Street
+	params["city"] = r.City
+	params["county"] = r.County
+	params["state"] = r.State
+	params["country"] = r.Country
+	params["postalcode"] = r.PostalCode
+	params["accept-language"] = o.Config.Language
+	if o.Config.MaxResult > 0 {
+		params["maxresult"] = strconv.Itoa(int(o.Config.MaxResult))
 	}
 
 	strParams := fmt.Sprintf("%s", urlAPI)
