@@ -13,11 +13,12 @@ func main() {
 			Country: "Brasil",
 	}
 	g := geocoder.New()
-	g.Timeout = 5 //seconds
-	ret := g.Search(req).ToObject()
-	m := ret.Result
-	for i := range m {
+	g.Timeout = 8 //seconds
+	ret := g.Search(req).ToObject().Find("display_name", "Ijui")
+	/* m := ret.Result
+	fmt.Println(m) */
+	/* for i := range m {
 		fmt.Println(fmt.Sprintf("Result: %d, %s", i, m[i]["display_name"]))
-	}
+	} */
 	fmt.Println(ret.Error)
 }
