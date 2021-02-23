@@ -51,6 +51,21 @@ func (o *ApiObject) ToObject() *ApiObject {
 	return o
 }
 
+func (o *ApiObject) Find(element string, value string) *ApiObject {
+	if o.Error == nil {
+		var matches []map[string]interface{}
+		for _, item := range o.Result {
+			if item[element] != nil {
+				if strings.Contains(strings.ToLower(item[element].(string)), strings.ToLower(value)) {
+					matches = append(matches, item)
+				}
+			}
+		}
+		o.Result = matches
+	}
+	return o
+}
+
 //FormatParameters - Process string parameter
 func (o *ApiObject) FormatParameters(r model.GeocoderRequest) string {
 	params := make(map[string]string)
