@@ -3,7 +3,7 @@ package api
 //example - https://nominatim.openstreetmap.org/search.php
 
 import (
-	"encoding/json"
+	/* "encoding/json" */
 	"fmt"
 	"time"
 	"io/ioutil"
@@ -14,17 +14,12 @@ import (
 	model "../model"
 )
 
-type ApiObject struct {
-	internal interface{}
-	Result []map[string]interface{}
-	Config model.GeocoderConfig
-	Error error
-}
+type Object model.Object
 
 const urlAPI string = `https://nominatim.openstreetmap.org/search.php?polygon_geojson=1&format=jsonv2`
 
 //Request - Function to return response in string
-func (o *ApiObject) Request(r model.GeocoderRequest) *ApiObject {
+func (o *Object) Request(r model.GeocoderRequest) *Object {
 	newURL := o.FormatParameters(r)
 	fmt.Println(o.Config.Timeout, newURL)
 	client := http.Client{
@@ -37,37 +32,12 @@ func (o *ApiObject) Request(r model.GeocoderRequest) *ApiObject {
 		return o
 	}
 	body, _ := ioutil.ReadAll(res.Body)
-	o.internal = string(body)
-	return o
-}
-
-//RequestObject - Function to return object in time execution
-func (o *ApiObject) ToObject() *ApiObject {
-	if o.Error == nil {
-		var results []map[string]interface{}
-		json.Unmarshal([]byte(o.internal.(string)), &results)
-		o.Result = results
-	}
-	return o
-}
-
-func (o *ApiObject) Find(element string, value string) *ApiObject {
-	if o.Error == nil {
-		var matches []map[string]interface{}
-		for _, item := range o.Result {
-			if item[element] != nil {
-				if strings.Contains(strings.ToLower(item[element].(string)), strings.ToLower(value)) {
-					matches = append(matches, item)
-				}
-			}
-		}
-		o.Result = matches
-	}
+	o.Internal = string(body)
 	return o
 }
 
 //FormatParameters - Process string parameter
-func (o *ApiObject) FormatParameters(r model.GeocoderRequest) string {
+func (o *Object) FormatParameters(r model.GeocoderRequest) string {
 	params := make(map[string]string)
 
 	params["street"] = r.Street
