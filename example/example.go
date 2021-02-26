@@ -20,5 +20,5 @@ func main() {
 	/* for i := range m {
 		fmt.Println(fmt.Sprintf("Result: %d, %s", i, m[i]["display_name"]))
 	} */
-	fmt.Println(ret.Error)
+	fmt.Println(ret.Result)
 }
