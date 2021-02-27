@@ -1,4 +1,5 @@
-[] create model request
+[x] create model request
 [] create model response
-[] function declaration
-[]
+[x] function declaration
+[] implement type interface
+[x] implemented the receiver function generic
