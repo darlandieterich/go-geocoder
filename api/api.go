@@ -1,7 +1,5 @@
 package api
 
-//example - https://nominatim.openstreetmap.org/search.php
-
 import (
 	"fmt"
 	"time"
@@ -14,10 +12,10 @@ import (
 
 type Object model.Object
 
-//Request - Function to return response in string
-func (o *Object) Request(r model.GeocoderRequest) *Object {
+//Request - Function to return response json
+func (o *Object) Request(r model.GeocoderRequestSearch) *Object {
 	objHelper := helper.Object{}
-	newURL := objHelper.FormatParameters(r)
+	newURL := objHelper.FormatParametersSearch(r)
 	fmt.Println(o.Config.Timeout, newURL)
 	client := http.Client{
 		Timeout: time.Duration(o.Config.Timeout) * time.Second,

@@ -18,17 +18,17 @@ func New() Config {
 	}
 }
 
-func (c *Config) Search(r model.GeocoderRequest) *Object {
+func (c *Config) Search(r model.GeocoderRequestSearch) *Object {
 	ca := (*core.Config)(c)
 	return (*Object)(ca.Search(r))
 }
 
-func (o *Object) Find(element string, value string) *Object {
-	c := (*core.Object)(o)
-	return (*Object)(c.Find(element, value))
+func (o *Object) ToObject() *Object {
+	co := (*core.Object)(o)
+	return (*Object)(co.ToObject())
 }
 
-func (o *Object) ToObject() *Object {
-	c := (*core.Object)(o)
-	return (*Object)(c.ToObject())
+func (o *Object) Find(element string, value string) *Object {
+	co := (*core.Object)(o)
+	return (*Object)(co.Find(element, value))
 }

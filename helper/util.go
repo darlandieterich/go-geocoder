@@ -10,7 +10,7 @@ import (
 type Object model.Object
 
 //FormatParametersSearch - Process string parameter
-func (o *Object) FormatParametersSearch(r model.GeocoderRequest) string {
+func (o *Object) FormatParametersSearch(r model.GeocoderRequestSearch) string {
 	params := make(map[string]string)
 
 	params["street"] = r.Street

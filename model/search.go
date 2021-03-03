@@ -10,15 +10,8 @@ type GeocoderRequestSearch struct {
 	PostalCode string
 }
 
-//GeocoderConfig - Model to configuration
-type GeocoderConfig struct {
-	Language  string
-	MaxResult uint
-	Timeout   uint //seconds
-}
-
 //GeocoderResponse - Stack Struct for response
-type GeocoderResponse struct {
+type GeocoderResponseSearch struct {
 	Response []GeocoderResponseObject `json:"[]"`
 }
 

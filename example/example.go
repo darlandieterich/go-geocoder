@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	req := model.GeocoderRequest{
+	req := model.GeocoderRequestSearch{
 			City: "Ijui",
 			Country: "Brasil",
 	}

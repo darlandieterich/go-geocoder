@@ -13,7 +13,7 @@ type Object model.Object
 type Config model.GeocoderConfig
 
 //Search - Search to get the coordenates
-func (c *Config) Search(r model.GeocoderRequest) *Object {
+func (c *Config) Search(r model.GeocoderRequestSearch) *Object {
 	castObject := (*model.GeocoderConfig)(c)
 	req := api.Object{}
 	req.Config = *castObject
@@ -22,8 +22,8 @@ func (c *Config) Search(r model.GeocoderRequest) *Object {
 }
 
 //ReverseSearch - Reverse Search
-func (c *Config) ReverseSearch() {
-
+func (c *Config) ReverseSearch() *Object {
+ return &Object{}
 }
 
 //Find - Search by element with name and contains value
@@ -42,7 +42,7 @@ func (o *Object) Find(element string, value string) *Object {
 	return o
 }
 
-//ToObject - Function to return object in time execution
+//ToObject - Mapping the JSON string to interface{}
 func (o *Object) ToObject() *Object {
 	if o.Error == nil {
 		var results []map[string]interface{}
