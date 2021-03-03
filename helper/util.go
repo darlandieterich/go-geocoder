@@ -9,8 +9,8 @@ import (
 
 type Object model.Object
 
-//FormatParameters - Process string parameter
-func (o *Object) FormatParameters(r model.GeocoderRequest) string {
+//FormatParametersSearch - Process string parameter
+func (o *Object) FormatParametersSearch(r model.GeocoderRequest) string {
 	params := make(map[string]string)
 
 	params["street"] = r.Street
@@ -24,7 +24,7 @@ func (o *Object) FormatParameters(r model.GeocoderRequest) string {
 		params["maxresult"] = strconv.Itoa(int(o.Config.MaxResult))
 	}
 
-	strParams := fmt.Sprintf("%s", model.UrlAPI)
+	strParams := fmt.Sprintf("%s", model.UrlAPISearch)
 
 	for keyP, valueP := range params {
 		if strings.TrimSpace(valueP) != "" {
