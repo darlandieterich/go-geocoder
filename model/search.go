@@ -1,6 +1,6 @@
 package model
 
-//GeocoderRequest - Struct for request
+//GeocoderRequestSearch - Struct for request
 type GeocoderRequestSearch struct {
 	Street     string
 	City       string
@@ -10,7 +10,7 @@ type GeocoderRequestSearch struct {
 	PostalCode string
 }
 
-//GeocoderResponse - Stack Struct for response
+//GeocoderResponseSearch - Stack Struct for response
 type GeocoderResponseSearch struct {
 	Response []GeocoderResponseObject `json:"[]"`
 }
