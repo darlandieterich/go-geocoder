@@ -1,7 +1,6 @@
 package helper
 
 import (
-	"strconv"
 	"strings"
 	"fmt"
 	model "../model"
@@ -21,16 +20,32 @@ func (o *Object) FormatParametersSearch(r model.GeocoderRequestSearch) string {
 	params["postalcode"] = r.PostalCode
 	params["accept-language"] = o.Config.Language
 	if o.Config.MaxResult > 0 {
-		params["maxresult"] = strconv.Itoa(int(o.Config.MaxResult))
+		params["maxresult"] = fmt.Sprint(o.Config.MaxResult)
 	}
 
 	strParams := fmt.Sprintf("%s", model.UrlAPISearch)
 
+	return formatParameters(strParams, params)
+}
+
+//FormatParametersReverse - Process parameters to return string formated
+func (o *Object) FormatParametersReverse(r model.GeocoderRequestReverse) string {
+	params := make(map[string]string)
+
+	params["lat"] = fmt.Sprint(r.Lat)
+	params["lon"] = fmt.Sprint(r.Lon)
+	params["zoom"] = fmt.Sprint(r.Zoom)
+
+	strParams := fmt.Sprintf("%s", model.UrlAPIReverse)
+
+	return formatParameters(strParams, params)
+}
+
+func formatParameters(strParams string, params map[string]string) string {
 	for keyP, valueP := range params {
 		if strings.TrimSpace(valueP) != "" {
 			strParams = fmt.Sprintf("%s&%s=%s", strParams, keyP, valueP)
 		}
 	}
-
 	return strParams
 }
