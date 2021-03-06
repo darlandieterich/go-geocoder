@@ -13,8 +13,7 @@ type Object model.Object
 func New() Config {
 	return Config{
 		Language:  "en",
-		MaxResult: 1,
-		Timeout: 5,
+		Timeout: 3,
 	}
 }
 

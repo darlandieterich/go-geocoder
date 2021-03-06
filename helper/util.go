@@ -19,8 +19,8 @@ func (o *Object) FormatParametersSearch(r model.GeocoderRequestSearch) string {
 	params["country"] = r.Country
 	params["postalcode"] = r.PostalCode
 	params["accept-language"] = o.Config.Language
-	if o.Config.MaxResult > 0 {
-		params["maxresult"] = fmt.Sprint(o.Config.MaxResult)
+	if r.MaxResult > 0 {
+		params["maxresult"] = fmt.Sprint(r.MaxResult)
 	}
 
 	strParams := fmt.Sprintf("%s", model.UrlAPISearch)

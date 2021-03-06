@@ -8,6 +8,7 @@ type GeocoderRequestSearch struct {
 	State      string
 	Country    string
 	PostalCode string
+	MaxResult  uint
 }
 
 //GeocoderResponseSearch - Stack Struct for response
