@@ -4,4 +4,4 @@
 [] implement type interface
 [x] implemented the receiver function generic
 [] reverse request
-[] reverse enum zoom
+[x] reverse enum zoom

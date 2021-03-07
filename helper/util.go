@@ -41,6 +41,7 @@ func (o *Object) FormatParametersReverse(r model.GeocoderRequestReverse) string 
 	return formatParameters(strParams, params)
 }
 
+//formatParameters - Internal function to join the parameters
 func formatParameters(strParams string, params map[string]string) string {
 	for keyP, valueP := range params {
 		if strings.TrimSpace(valueP) != "" {
