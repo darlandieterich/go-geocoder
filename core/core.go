@@ -50,7 +50,7 @@ func (o *Object) Find(element string, value string) *Object {
 func (o *Object) ToObject() *Object {
 	if o.Error == nil {
 		var results []map[string]interface{}
-		json.Unmarshal([]byte(o.Internal.(string)), &results)
+		json.Unmarshal([]byte(o.Internal), &results)
 		o.Result = results
 	}
 	return o
