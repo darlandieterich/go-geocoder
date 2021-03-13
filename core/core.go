@@ -34,14 +34,14 @@ func (c *Config) Reverse(r model.GeocoderRequestReverse) *Object {
 func (o *Object) Find(element string, value string) *Object {
 	if o.Error == nil {
 		var matches []map[string]interface{}
-		for _, item := range o.Result {
+		for _, item := range o.Object {
 			if item[element] != nil {
 				if strings.Contains(strings.ToLower(item[element].(string)), strings.ToLower(value)) {
 					matches = append(matches, item)
 				}
 			}
 		}
-		o.Result = matches
+		o.Object = matches
 	}
 	return o
 }
@@ -50,8 +50,8 @@ func (o *Object) Find(element string, value string) *Object {
 func (o *Object) ToObject() *Object {
 	if o.Error == nil {
 		var results []map[string]interface{}
-		json.Unmarshal([]byte(o.Internal.(string)), &results)
-		o.Result = results
+		json.Unmarshal([]byte(o.Result.(string)), &results)
+		o.Object = results
 	}
 	return o
 }

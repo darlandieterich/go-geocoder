@@ -1,8 +1,8 @@
 package model
 
 type Object struct {
-	Internal interface{}
-	Result []map[string]interface{}
+	Result interface{}
+	Object []map[string]interface{}
 	Config GeocoderConfig
 	Error error
 }

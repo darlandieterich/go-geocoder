@@ -12,7 +12,7 @@ import (
 
 type Object model.Object
 
-func (o *Object) rootRequest(url string, isReverse bool) *Object {
+func (o *Object) rootRequest(url string, inArray bool) *Object {
 	fmt.Println(o.Config.Timeout, url)
 	client := http.Client{
 		Timeout: time.Duration(o.Config.Timeout) * time.Second,
@@ -24,10 +24,10 @@ func (o *Object) rootRequest(url string, isReverse bool) *Object {
 		return o
 	}
 	body, _ := ioutil.ReadAll(res.Body)
-	if isReverse {
-		o.Internal = "["+string(body)+"]"
+	if inArray {
+		o.Result = "["+string(body)+"]"
 	} else {
-		o.Internal = string(body)
+		o.Result = string(body)
 	}
 	//fmt.Println(o.Internal)
 	return o
