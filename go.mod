@@ -1,4 +1,3 @@
 module github.com/darlandieterich/go-geocoder
 
-go 1.12
-
+go 1.14
