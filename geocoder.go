@@ -1,8 +1,8 @@
 package geocoder
 
 import (
-	model "./model"
-	core "./core"
+	model "github.com/darlandieterich/go-geocoder/model"
+	core "github.com/darlandieterich/go-geocoder/core"
 )
 
 type Config model.GeocoderConfig

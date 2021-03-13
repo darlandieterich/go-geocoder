@@ -6,8 +6,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	model "../model"
-	helper "../helper"
+	model "github.com/darlandieterich/go-geocoder/model"
+	helper "github.com/darlandieterich/go-geocoder/helper"
 )
 
 type Object model.Object

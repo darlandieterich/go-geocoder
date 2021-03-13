@@ -4,8 +4,8 @@ import (
   "strings"
 	"encoding/json"
 
-	api   "../api"
-	model "../model"
+	api   "github.com/darlandieterich/go-geocoder/api"
+	model "github.com/darlandieterich/go-geocoder/model"
 )
 
 type Object model.Object

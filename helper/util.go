@@ -3,7 +3,7 @@ package helper
 import (
 	"strings"
 	"fmt"
-	model "../model"
+	model "github.com/darlandieterich/go-geocoder/model"
 )
 
 type Object model.Object
