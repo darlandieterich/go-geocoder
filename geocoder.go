@@ -41,3 +41,8 @@ func (o *Object) First() *Object {
 	co := (*core.Object)(o)
 	return (*Object)(co.First())
 }
+
+func (o *Object) Last() *Object {
+	co := (*core.Object)(o)
+	return (*Object)(co.Last())
+}

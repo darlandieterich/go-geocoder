@@ -1,7 +1,6 @@
 package core
 
 import (
-	"encoding/json"
 	"strings"
 
 	api "github.com/darlandieterich/go-geocoder/api"
@@ -48,20 +47,33 @@ func (o *Object) Find(element string, value string) *Object {
 
 //ToObject - Mapping the JSON string to interface{}
 func (o *Object) ToObject() *Object {
-	if o.Error == nil {
+	/* if o.Error == nil {
 		var results []map[string]interface{}
 		json.Unmarshal([]byte(o.Result.(string)), &results)
 		o.Object = results
-	}
+	} */
 	return o
 }
 
+//First - Return the first position of collection
 func (o *Object) First() *Object {
 	if o.Error == nil {
 		size := len(o.Object)
 		if size > 0 {
-			var matches []map[string]interface{}
-			o.Object = append(matches, o.Object[0])
+			var first []map[string]interface{}
+			o.Object = append(first, o.Object[0])
+		}
+	}
+	return o
+}
+
+//Last - Return the last position of collection
+func (o *Object) Last() *Object {
+	if o.Error == nil {
+		size := len(o.Object)
+		if size > 0 {
+			var last []map[string]interface{}
+			o.Object = append(last, o.Object[size-1])
 		}
 	}
 	return o
