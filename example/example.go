@@ -15,22 +15,22 @@ import (
 
 func main() {
 	search := model.GeocoderRequestSearch{
-		City:      "Ijui",
-		Country:   "Brasil",
+		City:      "Dresden",
+		Country:   "Germany",
 		MaxResult: 1,
 	}
 
-	/* reverse := model.GeocoderRequestReverse{
+	reverse := model.GeocoderRequestReverse{
 		Lat:  51.05,
 		Lon:  13.74,
 		Zoom: model.ReverseZoomCountry,
-	} */
+	}
 	g := geocoder.New()
-	g.Timeout = 8 //seconds
-	ret := g.Search(search).Find("display_name", "Ijui")
+	g.Timeout = 8           //seconds
+	ret := g.Search(search) //.Find("display_name", "Dresden")
 	fmt.Println("Result", ret.Result)
-	//ret := g.Reverse(reverse).ToObject() //.Find("display_name", "Dresden")
-	//fmt.Println("Result", reflect.TypeOf(ret.Object))
+	ret = g.Reverse(reverse) //.Find("display_name", "Dresden")
+	fmt.Println("Result", ret.Result)
 	/* for i := range ret.Result {
 		fmt.Println(fmt.Sprintf("Result: %d, %s", i, ret.Result[i]["display_name"]))
 	} */
