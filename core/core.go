@@ -1,10 +1,10 @@
 package core
 
 import (
-  "strings"
 	"encoding/json"
+	"strings"
 
-	api   "github.com/darlandieterich/go-geocoder/api"
+	api "github.com/darlandieterich/go-geocoder/api"
 	model "github.com/darlandieterich/go-geocoder/model"
 )
 
@@ -21,7 +21,7 @@ func (c *Config) Search(r model.GeocoderRequestSearch) *Object {
 	return returnCast
 }
 
-//Reverse - Reverse Search
+//Reverse - Reverse Search by coordinates
 func (c *Config) Reverse(r model.GeocoderRequestReverse) *Object {
 	castObject := (*model.GeocoderConfig)(c)
 	req := api.Object{}
@@ -52,6 +52,17 @@ func (o *Object) ToObject() *Object {
 		var results []map[string]interface{}
 		json.Unmarshal([]byte(o.Result.(string)), &results)
 		o.Object = results
+	}
+	return o
+}
+
+func (o *Object) First() *Object {
+	if o.Error == nil {
+		size := len(o.Object)
+		if size > 0 {
+			var matches []map[string]interface{}
+			o.Object = append(matches, o.Object[0])
+		}
 	}
 	return o
 }

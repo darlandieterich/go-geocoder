@@ -1,8 +1,8 @@
 package geocoder
 
 import (
-	model "github.com/darlandieterich/go-geocoder/model"
 	core "github.com/darlandieterich/go-geocoder/core"
+	model "github.com/darlandieterich/go-geocoder/model"
 )
 
 type Config model.GeocoderConfig
@@ -12,8 +12,8 @@ type Object model.Object
 //New - declaration of default values
 func New() Config {
 	return Config{
-		Language:  "en",
-		Timeout: 3,
+		Language: "en",
+		Timeout:  3,
 	}
 }
 
@@ -35,4 +35,9 @@ func (o *Object) ToObject() *Object {
 func (o *Object) Find(element string, value string) *Object {
 	co := (*core.Object)(o)
 	return (*Object)(co.Find(element, value))
+}
+
+func (o *Object) First() *Object {
+	co := (*core.Object)(o)
+	return (*Object)(co.First())
 }

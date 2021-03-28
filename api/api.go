@@ -2,17 +2,18 @@ package api
 
 import (
 	"fmt"
-	"time"
 	"io/ioutil"
 	"net/http"
+	"time"
 
-	model "github.com/darlandieterich/go-geocoder/model"
 	helper "github.com/darlandieterich/go-geocoder/helper"
+	model "github.com/darlandieterich/go-geocoder/model"
 )
 
 type Object model.Object
 
-func (o *Object) rootRequest(url string, inArray bool) *Object {
+//rootRequest - Internal function to request and return result
+func (o *Object) rootRequest(url string, inCollection bool) *Object {
 	fmt.Println(o.Config.Timeout, url)
 	client := http.Client{
 		Timeout: time.Duration(o.Config.Timeout) * time.Second,
@@ -24,12 +25,11 @@ func (o *Object) rootRequest(url string, inArray bool) *Object {
 		return o
 	}
 	body, _ := ioutil.ReadAll(res.Body)
-	if inArray {
-		o.Result = "["+string(body)+"]"
+	if inCollection {
+		o.Result = "[" + string(body) + "]"
 	} else {
 		o.Result = string(body)
 	}
-	//fmt.Println(o.Internal)
 	return o
 }
 
