@@ -36,7 +36,7 @@ func (o *Object) rootRequest(url string, inCollection bool) *Object {
 	var results []map[string]interface{}
 	json.Unmarshal([]byte(ret), &results)
 
-	o.Object = results
+	o.Result = results
 	return o
 }
 

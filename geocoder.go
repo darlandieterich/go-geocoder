@@ -27,11 +27,6 @@ func (c *Config) Reverse(r model.GeocoderRequestReverse) *Object {
 	return (*Object)(ca.Reverse(r))
 }
 
-func (o *Object) ToObject() *Object {
-	co := (*core.Object)(o)
-	return (*Object)(co.ToObject())
-}
-
 func (o *Object) Find(element string, value string) *Object {
 	co := (*core.Object)(o)
 	return (*Object)(co.Find(element, value))

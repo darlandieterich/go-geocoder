@@ -33,35 +33,25 @@ func (c *Config) Reverse(r model.GeocoderRequestReverse) *Object {
 func (o *Object) Find(element string, value string) *Object {
 	if o.Error == nil {
 		var matches []map[string]interface{}
-		for _, item := range o.Object {
+		for _, item := range o.Result {
 			if item[element] != nil {
 				if strings.Contains(strings.ToLower(item[element].(string)), strings.ToLower(value)) {
 					matches = append(matches, item)
 				}
 			}
 		}
-		o.Object = matches
+		o.Result = matches
 	}
-	return o
-}
-
-//ToObject - Mapping the JSON string to interface{}
-func (o *Object) ToObject() *Object {
-	/* if o.Error == nil {
-		var results []map[string]interface{}
-		json.Unmarshal([]byte(o.Result.(string)), &results)
-		o.Object = results
-	} */
 	return o
 }
 
 //First - Return the first position of collection
 func (o *Object) First() *Object {
 	if o.Error == nil {
-		size := len(o.Object)
+		size := len(o.Result)
 		if size > 0 {
 			var first []map[string]interface{}
-			o.Object = append(first, o.Object[0])
+			o.Result = append(first, o.Result[0])
 		}
 	}
 	return o
@@ -70,10 +60,10 @@ func (o *Object) First() *Object {
 //Last - Return the last position of collection
 func (o *Object) Last() *Object {
 	if o.Error == nil {
-		size := len(o.Object)
+		size := len(o.Result)
 		if size > 0 {
 			var last []map[string]interface{}
-			o.Object = append(last, o.Object[size-1])
+			o.Result = append(last, o.Result[size-1])
 		}
 	}
 	return o
