@@ -1,6 +1,7 @@
 package api
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -20,16 +21,22 @@ func (o *Object) rootRequest(url string, inCollection bool) *Object {
 	}
 	res, err := client.Get(url)
 	if err != nil {
-		//fmt.Println(err)
 		o.Error = err
 		return o
 	}
 	body, _ := ioutil.ReadAll(res.Body)
+
+	var ret = ""
 	if inCollection {
-		o.Result = "[" + string(body) + "]"
+		ret = "[" + string(body) + "]"
 	} else {
-		o.Result = string(body)
+		ret = string(body)
 	}
+
+	var results []map[string]interface{}
+	json.Unmarshal([]byte(ret), &results)
+
+	o.Object = results
 	return o
 }
 
